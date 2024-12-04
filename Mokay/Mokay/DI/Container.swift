@@ -20,18 +20,18 @@ public final class Container: Sendable {
 		self.parent = parent
 	}
 	
-	public func register<T>(
+	public func register<T: Sendable>(
 		_ scope: Scope = .transient,
 		to type: T.Type = T.self,
 		name: String? = nil,
-		factory: @escaping (Container) -> T
+		factory: @escaping @Sendable (Container) -> T
 	) {
 		store.withLock { storage in
 			storage[Key(type: type, name: name)] = Resolver(scope: scope, factory: factory)
 		}
 	}
 	
-	public func resolve<T>(
+	public func resolve<T: Sendable>(
 		_ type: T.Type = T.self,
 		name: String? = nil
 	) -> T? {

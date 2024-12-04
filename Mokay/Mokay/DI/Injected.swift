@@ -5,7 +5,7 @@
 //  Created by Andrei Kozlov on 4/12/24.
 //
 
-@propertyWrapper public final class Injected<T> {
+@propertyWrapper public final class Injected<T: Sendable> {
 		
 	private let name: String?
 	
