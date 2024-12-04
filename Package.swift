@@ -5,6 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "Mokay",
+	platforms: [.iOS(17)],
     products: [
         .library(
             name: "Mokay",
