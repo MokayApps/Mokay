@@ -30,7 +30,7 @@ extension HTTPClient {
 
 extension HTTPClient.Request {
 	
-	var body: Data? { nil }
-	var headers: [String: String]? { nil }
+	public var body: Data? { nil }
+	public var headers: [String: String]? { nil }
 	
 }
