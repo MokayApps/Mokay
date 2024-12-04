@@ -1,0 +1,24 @@
+{
+  "originHash" : "883930d8e8f9f9e8bdb4a056acda15c1a401513d3fa52529238f71e43e34a425",
+  "pins" : [
+    {
+      "identity" : "mokay",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/k0zl0v/Mokay.git",
+      "state" : {
+        "revision" : "00f049f475996baa2ccd6685603d656ee614acdc",
+        "version" : "1.2.0"
+      }
+    },
+    {
+      "identity" : "swift-syntax",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-syntax",
+      "state" : {
+        "revision" : "64889f0c732f210a935a0ad7cda38f77f876262d",
+        "version" : "509.1.1"
+      }
+    }
+  ],
+  "version" : 3
+}
