@@ -6,17 +6,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/k0zl0v/Mokay.git",
       "state" : {
-        "revision" : "00f049f475996baa2ccd6685603d656ee614acdc",
-        "version" : "1.2.0"
-      }
-    },
-    {
-      "identity" : "swift-syntax",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-syntax",
-      "state" : {
-        "revision" : "64889f0c732f210a935a0ad7cda38f77f876262d",
-        "version" : "509.1.1"
+        "revision" : "ff32e4f3f2421e17a156a3b1f5a6525fa3cc5066",
+        "version" : "1.3.0"
       }
     }
   ],

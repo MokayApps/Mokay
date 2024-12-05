@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		1CF9C4F92D01C288006C55E7 /* Mokay in Frameworks */ = {isa = PBXBuildFile; productRef = 1CF9C4F82D01C288006C55E7 /* Mokay */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		1C3921EC2D00573200848672 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1CF9C4F92D01C288006C55E7 /* Mokay in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +83,7 @@
 				1C3921DB2D00573100848672 /* MokayExample */,
 				1C3921EE2D00573200848672 /* MokayExampleTests */,
 				1C3921F82D00573200848672 /* MokayExampleUITests */,
+				1CF9C4F72D01C288006C55E7 /* Frameworks */,
 				1C3921DA2D00573100848672 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -90,6 +96,13 @@
 				1C3921F52D00573200848672 /* MokayExampleUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		1CF9C4F72D01C288006C55E7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -112,6 +125,7 @@
 			);
 			name = MokayExample;
 			packageProductDependencies = (
+				1CF9C4F82D01C288006C55E7 /* Mokay */,
 			);
 			productName = MokayExample;
 			productReference = 1C3921D92D00573100848672 /* MokayExample.app */;
@@ -572,6 +586,14 @@
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1CF9C4F82D01C288006C55E7 /* Mokay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1C101BD52D00E514002204E0 /* XCRemoteSwiftPackageReference "Mokay" */;
+			productName = Mokay;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1C3921D12D00573100848672 /* Project object */;
 }

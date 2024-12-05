@@ -6,13 +6,7 @@
 //
 
 import SwiftUI
-import Mokay
 
 @Observable final class ContentViewModel {
 	
-	@ObservationIgnored var todoService: TodoServiceProtocol
-	
-	init(todoService: TodoServiceProtocol) {
-		self.todoService = todoService
-	}
 }
