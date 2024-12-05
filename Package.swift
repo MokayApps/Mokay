@@ -20,9 +20,7 @@ let package = Package(
 			]
 		),
     ],
-	dependencies: [
-		.package(url: "https://github.com/apple/swift-syntax", from: "509.0.0")
-	],
+	dependencies: [],
     targets: [
         .target(
             name: "MokayDB",
@@ -32,9 +30,7 @@ let package = Package(
 		),
 		.target(
             name: "MokayDI",
-			dependencies: [
-				"MokayMacros"
-			],
+			dependencies: [],
 			path: "Mokay/Mokay/DI",
 			publicHeadersPath: "Mokay/Mokay"
 		),
@@ -43,16 +39,6 @@ let package = Package(
 			dependencies: [],
 			path: "Mokay/Mokay/HTTPClient",
 			publicHeadersPath: "Mokay/Mokay"
-		),
-		.macro(
-			name: "MokayMacros",
-			dependencies: [
-				.product(name: "SwiftSyntax", package: "swift-syntax"),
-				.product(name: "SwiftSyntaxMacros", package: "swift-syntax"),
-				.product(name: "SwiftCompilerPlugin", package: "swift-syntax"),
-				.product(name: "SwiftSyntaxMacrosTestSupport", package: "swift-syntax")
-			],
-			path: "Mokay/Mokay/Macros"
 		),
         .testTarget(
             name: "MokayTests",
