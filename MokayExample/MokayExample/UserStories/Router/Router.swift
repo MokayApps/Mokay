@@ -26,6 +26,8 @@ import MokayDI
 			container.resolve(TodoListView.self)
 		case .todoItem:
 			container.resolve(TodoItemView.self)
+		case .posts:
+			container.resolve(PostsView.self)
 		}
 	}
 	

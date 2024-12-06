@@ -13,5 +13,6 @@ struct AppAssembly {
 		TodoServiceAssembly().assemble(container: container)
 		TodoListAssembly().assemble(container: container)
 		PostsServiceAssembly().assemble(container: container)
+		PostsAssembly().assemble(container: container)
 	}
 }
