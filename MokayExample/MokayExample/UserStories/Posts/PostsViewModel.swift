@@ -11,14 +11,14 @@ import SwiftUI
 	
 	private(set) var viewState: PostsViewState = .idle
 	
-	private let postsService: PostsServiceProtocol
+	private let placeholderService: PlaceholderServiceProtocol
 	private let viewModelFactory: PostItemViewModelFactoryProtocol
 	
 	init(
-		postsService: PostsServiceProtocol,
+		placeholderService: PlaceholderServiceProtocol,
 		viewModelFactory: PostItemViewModelFactoryProtocol
 	) {
-		self.postsService = postsService
+		self.placeholderService = placeholderService
 		self.viewModelFactory = viewModelFactory
 	}
 	
@@ -35,7 +35,7 @@ import SwiftUI
 		viewState = .loading
 		Task {
 			do {
-				let posts = try await postsService.fetchPosts(request: .posts)
+				let posts = try await placeholderService.fetchPosts(request: .posts)
 				let postViewModels = posts.map(viewModelFactory.makePostItemViewModel)
 				viewState = .loaded(postViewModels)
 			} catch {

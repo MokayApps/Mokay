@@ -10,9 +10,8 @@ import MokayDI
 struct AppAssembly {
 	
 	func assemble(container: Container) {
-		TodoServiceAssembly().assemble(container: container)
+		PlaceholderServiceAssembly().assemble(container: container)
 		TodoListAssembly().assemble(container: container)
-		PostsServiceAssembly().assemble(container: container)
 		PostsAssembly().assemble(container: container)
 	}
 }

@@ -13,7 +13,7 @@ struct PostsAssembly {
 		container.register(PostsView.self) { resolver in
 			PostsView(
 				viewModel: PostsViewModel(
-					postsService: resolver.resolve(PostsServiceProtocol.self)!,
+					placeholderService: resolver.resolve(PlaceholderServiceProtocol.self)!,
 					viewModelFactory:PostItemViewModelFactory()
 				)
 			)
