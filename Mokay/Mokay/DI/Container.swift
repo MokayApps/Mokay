@@ -22,9 +22,9 @@ public final class Container: @unchecked Sendable {
 	}
 	
 	public func register<T: Sendable>(
-		_ scope: Scope = .transient,
-		to type: T.Type = T.self,
+		_ type: T.Type,
 		name: String? = nil,
+		in scope: Scope = .transient,
 		factory: @escaping @Sendable (Container) -> T
 	) {
 		lock.lock()
