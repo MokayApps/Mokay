@@ -8,13 +8,14 @@
 import Foundation
 import os
 
-public final class Container: Sendable {
+public final class Container: @unchecked Sendable {
 
 	/// The main service container.
 	public static let main = Container()
 	
 	private let parent: Container?
-	private let store = OSAllocatedUnfairLock<[Key: Resolver]>(uncheckedState: [:])
+	private var store: [Key: Resolver] = [:]
+	private let lock = NSRecursiveLock()
 
 	public init(parent: Container? = nil) {
 		self.parent = parent
@@ -26,19 +27,19 @@ public final class Container: Sendable {
 		name: String? = nil,
 		factory: @escaping @Sendable (Container) -> T
 	) {
-		store.withLock { storage in
-			storage[Key(type: type, name: name)] = Resolver(scope: scope, factory: factory)
-		}
+		lock.lock()
+		defer { lock.unlock() }
+		store[Key(type: type, name: name)] = Resolver(scope: scope, factory: factory)
 	}
 	
 	public func resolve<T: Sendable>(
 		_ type: T.Type = T.self,
 		name: String? = nil
 	) -> T? {
-		return store.withLock { storage in
-			let value: T? = storage[Key(type: type, name: name)]?.resolve(in: self)
-			return value ?? parent?.resolve(name: name)
-		}
+		lock.lock()
+		defer { lock.unlock() }
+		let value: T? = store[Key(type: type, name: name)]?.resolve(in: self)
+		return value ?? parent?.resolve(name: name)
 	}
 	
 }
