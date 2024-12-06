@@ -35,6 +35,7 @@ struct PostsView: View {
 							}
 						}
 					}
+					.padding(.horizontal, 8)
 				}
 			case .error:
 				ContentUnavailableView {

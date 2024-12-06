@@ -18,6 +18,7 @@ struct PostItemView: View {
 			Text(viewModel.body)
 				.font(.body)
 		}
+		.foregroundStyle(.black)
 		.multilineTextAlignment(.leading)
 		.frame(maxWidth: .infinity, alignment: .leading)
 		.padding()
