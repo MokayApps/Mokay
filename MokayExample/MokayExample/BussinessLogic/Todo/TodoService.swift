@@ -7,12 +7,12 @@
 
 import MokayNW
 
-protocol TodoServiceProtocol: AnyObject, Sendable {
+protocol TodoServiceProtocol: Sendable {
 	
 	func fetchTodos(request: TodoRequest) async throws -> [TodoItem]
 }
 
-final class TodoService: TodoServiceProtocol {
+struct TodoService: TodoServiceProtocol {
 	
 	private let httpClient: HTTPClient
 	

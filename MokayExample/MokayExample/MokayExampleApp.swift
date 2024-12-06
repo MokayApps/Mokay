@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import MokayDI
 
 @main
 struct MokayExampleApp: App {
@@ -23,11 +24,15 @@ struct MokayExampleApp: App {
 //            fatalError("Could not create ModelContainer: \(error)")
 //        }
 //    }()
+	
+	
+	init() {
+		AppAssembly().assemble(container: Container.main)
+	}
 
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-        }
-//        .modelContainer(sharedModelContainer)
-    }
+	var body: some Scene {
+		WindowGroup {
+			MainView()
+		}
+	}
 }

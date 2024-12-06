@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import MokayDI
 
 @Observable final class TodoListViewModel {
 	
@@ -23,7 +24,8 @@ import SwiftUI
 	}
 	
 	func onAppear() {
-		loadItems()
+		viewState = .error
+//		loadItems()
 	}
 	
 	func onReloadButtonTap() {

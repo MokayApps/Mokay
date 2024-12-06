@@ -9,26 +9,26 @@ import SwiftUI
 
 struct TodoListView: View {
 	
+	@Environment(Router.self) var router
 	let viewModel: TodoListViewModel
 	
 	var body: some View {
-		NavigationSplitView {
+		ZStack {
 			switch viewModel.viewState {
 			case .idle:
-				Color.primary
+				Color.white
+					.onAppear(perform: viewModel.onAppear)
 			case .loading:
-				ZStack {
-					Color.primary
-					ProgressView {
-						Text("Load data...")
-					}
-					.progressViewStyle(.circular)
+				Color.white
+				ProgressView {
+					Text("Load data...")
 				}
+				.progressViewStyle(.circular)
 			case .loaded(let items):
 				List {
 					ForEach(items) { item in
-						NavigationLink {
-							TodoItemView(viewModel: item)
+						Button {
+							router.push(.todoItem)
 						} label: {
 							TodoItemView(viewModel: item)
 						}
@@ -46,18 +46,21 @@ struct TodoListView: View {
 					}
 				}
 			case .error:
-				ContentUnavailableView.search
 				ContentUnavailableView {
-					Label("No items", systemImage: "tray.fill")
+					Label("No items", systemImage: "arrow.2.circlepath")
 				} description: {
-					Text("New items you receive will appear here.")
+					VStack {
+						Text("New items you receive will appear here.")
+						Button {
+							viewModel.onReloadButtonTap()
+						} label: {
+							Text("Reload")
+						}
+					}
 				}
 			}
-			
-		} detail: {
-			Text("Select an item")
 		}
-		.onAppear(perform: viewModel.onAppear)
+		.navigationTitle("Todo list")
 	}
 	
 	private func addItem() {

@@ -6,8 +6,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/k0zl0v/Mokay.git",
       "state" : {
-        "revision" : "ff32e4f3f2421e17a156a3b1f5a6525fa3cc5066",
-        "version" : "1.3.0"
+        "revision" : "216ffc5afe430046f4e3d670109edfb0b84be509",
+        "version" : "1.5.0"
       }
     }
   ],
