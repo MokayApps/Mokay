@@ -8,46 +8,60 @@
 import Combine
 import StoreKit
 
-@MainActor
-public final class StoreKitService: ObservableObject {
+public final class StoreKitService: @unchecked Sendable {
+    
+    // MARK: - Types
+    
+    public typealias ProductStream = AsyncStream<[Product]>
     
     // MARK: - Public properties
     
-    @Published var products: [Product] = []
+    private let productsSubject: CurrentValueSubject<[Product], Never>
+    private let productStorage: ProductStorage
     
-    // MARK: - Private properties
-    
-    private let productStatusStorage: ProductStatusStorage
-    private let productIds: [String]
-    
-    private var updateTask: Task<Void, Never>? = nil
+    private var transactionTask: Task<Void, Never>?
     
     // MARK: - Init
     
-    public init(
-        productStatusStorage: ProductStatusStorage,
-        productIds: [String]
-    ) {
-        self.productStatusStorage = productStatusStorage
-        self.productIds = productIds
+    public init(productStorage: ProductStorage) {
+        self.productStorage = productStorage
+        self.productsSubject = .init([])
         
-        updateTask = observeTransactionUpdates()
+        observeTransactions()
     }
     
     deinit {
-        updateTask?.cancel()
+        transactionTask?.cancel()
     }
     
     // MARK: - Public methods
     
-    public func fetchProducts() async throws {
-        do {
-            self.products = try await Product.products(for: productIds)
-        } catch {
-            throw error
+    /// Возвращает AsyncStream с обновлениями доступных продуктов.
+    public func productStream() -> ProductStream {
+        AsyncStream { continuation in
+            Task {
+                for await products in productsSubject.values {
+                    continuation.yield(products)
+                }
+            }
         }
     }
     
+    /// Загрузка списка доступных продуктов из App Store.
+    /// - **Когда вызывать:**
+    ///     - После создания сервиса, чтобы заранее подгрузить список доступных для покупки продуктов.
+    ///     - При загрузке пэйвола.
+    public func fetchProducts() async throws {
+        do {
+            let productIds = await productStorage.getProductIds()
+            let fetchedProducts = try await Product.products(for: productIds)
+            productsSubject.send(fetchedProducts)
+        } catch {
+            throw StoreKitServiceError.fetchProductsFailed(error)
+        }
+    }
+    
+    /// Обрабатывает покупку конкретного продукта.
     public func purhcase(_ product: Product) async throws {
         do {
             let result = try await product.purchase()
@@ -57,59 +71,64 @@ public final class StoreKitService: ObservableObject {
                 switch verificationStatus {
                 case let .verified(transaction):
                     await transaction.finish()
-                    await self.updatePurchasedProducts()
+                    await updatePurchasedProducts()
                     
                 case let .unverified(_, error):
-                    throw error
+                    throw StoreKitServiceError.verificationFailed(error)
                 }
                 
             case .pending:
-                break
+                throw StoreKitServiceError.pending
                 
             case .userCancelled:
-                throw StoreKitError.userCancelled
+                throw StoreKitServiceError.userCancelled
                 
             @unknown default:
-                throw StoreKitError.unknown
+                throw StoreKitServiceError.unknown
             }
         } catch {
-            throw error
+            throw StoreKitServiceError.transactionFailed(error)
         }
     }
     
-    public func updatePurchasedProducts() async {
-        for await result in Transaction.currentEntitlements {
-            guard case .verified(let transaction) = result else {
-               continue
-            }
-            
-            productStatusStorage.saveProductStatus(
-                productID: transaction.productID,
-                isPurchased: transaction.revocationDate == nil
-            )
-        }
-    }
-    
+    /// Восстанавливает ранее совершённые покупки.
     public func restorePurchases() async throws {
         do {
             try await AppStore.sync()
             await updatePurchasedProducts()
         } catch {
-            throw error
+            throw StoreKitServiceError.restorePurchaseFailed(error)
         }
     }
     
-    public func isPurchased(_ product: MokayProductProtocol) -> Bool {
-        productStatusStorage.isProductPurchased(productId: product.productId)
+    public func isPurchased(_ productId: String) async -> Bool {
+        let product = await productStorage.getProduct(with: productId)
+        return product?.isPurchased ?? false
     }
     
     // MARK: - Private methods
     
-    private func observeTransactionUpdates() -> Task<Void, Never> {
-        Task(priority: .background) { [weak self] in
-            for await _ in Transaction.updates {
-                await self?.updatePurchasedProducts()
+    /// Обеспечивает обработку транзакций, которые могли быть совершены на другом устройстве.
+    /// Например, покупка через один Apple ID в приложении на другом устройстве.
+    private func observeTransactions() {
+        transactionTask = Task {
+            for await transactions in Transaction.updates {
+                await updatePurchasedProducts()
             }
+        }
+    }
+    
+    private func updatePurchasedProducts() async {
+        for await result in Transaction.currentEntitlements {
+            guard case .verified(let transaction) = result else {
+               continue
+            }
+            
+            let product = StoredProductModel(
+                id: transaction.productID,
+                isPurchased: transaction.revocationDate == nil
+            )
+            await productStorage.saveProduct(product)
         }
     }
     
