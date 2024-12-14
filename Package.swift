@@ -40,12 +40,19 @@ let package = Package(
 			path: "Mokay/Mokay/HTTPClient",
 			publicHeadersPath: "Mokay/Mokay"
 		),
+		.target(
+			name: "MokayUI",
+			dependencies: [],
+			path: "Mokay/Mokay/DesignKit",
+			publicHeadersPath: "Mokay/Mokay"
+		),
         .testTarget(
             name: "MokayTests",
             dependencies: [
 				"MokayDB",
 				"MokayDI",
-				"MokayNW"
+				"MokayNW",
+				"MokayUI"
 			],
 			path: "Mokay/MokayTests"
         ),
