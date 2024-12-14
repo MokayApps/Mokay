@@ -16,7 +16,8 @@ let package = Package(
             targets: [
 				"MokayDB",
 				"MokayDI",
-				"MokayNW"
+				"MokayNW",
+				"MokayUI"
 			]
 		),
     ],
