@@ -5,18 +5,12 @@
 //  Created by Дмитрий Бондаренко on 07.12.24.
 //
 
-import Combine
 import StoreKit
 
 public final class StoreKitService: @unchecked Sendable {
     
-    // MARK: - Types
+    // MARK: - Private properties
     
-    public typealias ProductStream = AsyncStream<[Product]>
-    
-    // MARK: - Public properties
-    
-    private let productsSubject: CurrentValueSubject<[Product], Never>
     private let productStorage: ProductStorage
     
     private var transactionTask: Task<Void, Never>?
@@ -25,7 +19,6 @@ public final class StoreKitService: @unchecked Sendable {
     
     public init(productStorage: ProductStorage) {
         self.productStorage = productStorage
-        self.productsSubject = .init([])
         
         observeTransactions()
     }
@@ -37,14 +30,8 @@ public final class StoreKitService: @unchecked Sendable {
     // MARK: - Public methods
     
     /// Возвращает AsyncStream с обновлениями доступных продуктов.
-    public func productStream() -> ProductStream {
-        AsyncStream { continuation in
-            Task {
-                for await products in productsSubject.values {
-                    continuation.yield(products)
-                }
-            }
-        }
+    public func productStream() async -> ProductStream {
+        await productStorage.productStream()
     }
     
     /// Загрузка списка доступных продуктов из App Store.
@@ -55,7 +42,7 @@ public final class StoreKitService: @unchecked Sendable {
         do {
             let productIds = await productStorage.getProductIds()
             let fetchedProducts = try await Product.products(for: productIds)
-            productsSubject.send(fetchedProducts)
+            await productStorage.setProductList(fetchedProducts)
         } catch {
             throw StoreKitServiceError.fetchProductsFailed(error)
         }
@@ -112,7 +99,7 @@ public final class StoreKitService: @unchecked Sendable {
     /// Например, покупка через один Apple ID в приложении на другом устройстве.
     private func observeTransactions() {
         transactionTask = Task {
-            for await transactions in Transaction.updates {
+            for await _ in Transaction.updates {
                 await updatePurchasedProducts()
             }
         }
