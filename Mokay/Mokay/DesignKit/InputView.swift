@@ -7,16 +7,6 @@
 
 import SwiftUI
 
-@main struct SomeApp: App {
-	
-	var body: some Scene {
-		WindowGroup {
-			InputView(text: .constant(""), placeholder: "", shouldChange: { _ in true})
-		}
-	}
-	
-}
-
 public struct InputView: View {
 	
 	@Binding var text: String
