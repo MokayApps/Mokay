@@ -22,7 +22,7 @@ jobs:
           scheme_list=$(xcodebuild -list -json | tr -d "\n")
           echo "Scheme List JSON: $scheme_list"
 
-          default=$(echo $scheme_list | ruby -e "require 'json'; data = JSON.parse(STDIN.read); puts data['project']['schemes'][0] if data['project'] && data['project']['schemes']")
+          default=$(echo $scheme_list | ruby -e "require 'json'; data = JSON.parse(STDIN.read); puts data['workspace']['schemes'][0] if data['workspace'] && data['workspace']['schemes']")
           if [ -z "$default" ]; then
             echo "Error: No default scheme found."
             exit 1
