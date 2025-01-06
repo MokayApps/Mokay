@@ -7,7 +7,9 @@
 
 import SwiftUI
 
-@Observable final class PostsViewModel {
+@MainActor
+@Observable
+final class PostsViewModel {
 	
 	private(set) var viewState: PostsViewState = .idle
 	

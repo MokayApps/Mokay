@@ -8,7 +8,9 @@
 import SwiftUI
 import MokayDI
 
-@Observable final class TodoListViewModel {
+@MainActor
+@Observable
+final class TodoListViewModel {
 	
 	private(set) var viewState: TodoListViewState = .idle
 	

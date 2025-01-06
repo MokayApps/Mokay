@@ -11,12 +11,14 @@ struct PostsAssembly {
 	
 	func assemble(container: Container) {
 		container.register(PostsView.self) { resolver in
-			PostsView(
-				viewModel: PostsViewModel(
-					placeholderService: resolver.resolve(PlaceholderServiceProtocol.self)!,
-					viewModelFactory:PostItemViewModelFactory()
+			MainActor.assumeIsolated {
+				PostsView(
+					viewModel: PostsViewModel(
+						placeholderService: resolver.resolve(PlaceholderServiceProtocol.self)!,
+						viewModelFactory:PostItemViewModelFactory()
+					)
 				)
-			)
+			}
 		}
 	}
 }
