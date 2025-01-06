@@ -38,7 +38,7 @@ jobs:
           if [ -f *.xcworkspace ]; then
             filetype_parameter="workspace"
             file_to_build=$(ls *.xcworkspace)
-		  else
+         else
             filetype_parameter="project"
             file_to_build=$(ls *.xcodeproj)
           fi
