@@ -48,9 +48,9 @@ jobs:
             filetype_parameter="project"
             file_to_build=$(ls *.xcodeproj | head -n 1)
           else
-			echo "Error: No .xcworkspace or .xcodeproj file found in Mokay directory."
-			exit 1
-		  fi
+            echo "Error: No .xcworkspace or .xcodeproj file found in Mokay directory."
+            exit 1
+          fi
 
           file_to_build=$(echo $file_to_build | awk '{$1=$1;print}')
           xcodebuild clean build analyze -scheme "$scheme" -"$filetype_parameter" "$file_to_build" | xcpretty
