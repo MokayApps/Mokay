@@ -16,7 +16,8 @@ let package = Package(
             targets: [
 				"MokayDB",
 				"MokayDI",
-				"MokayNW"
+				"MokayNW",
+                "MokaySK"
 			]
 		),
     ],
@@ -40,12 +41,19 @@ let package = Package(
 			path: "Mokay/Mokay/HTTPClient",
 			publicHeadersPath: "Mokay/Mokay"
 		),
+        .target(
+            name: "MokaySK",
+            dependencies: [],
+            path: "Mokay/Mokay/StoreKit",
+            publicHeadersPath: "Mokay/Mokay"
+        ),
         .testTarget(
             name: "MokayTests",
             dependencies: [
 				"MokayDB",
 				"MokayDI",
-				"MokayNW"
+				"MokayNW",
+                "MokaySK"
 			],
 			path: "Mokay/MokayTests"
         ),
