@@ -8,4 +8,5 @@
 enum Route: Hashable {
 	case todoList
 	case todoItem
+	case posts
 }

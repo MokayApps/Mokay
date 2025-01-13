@@ -1,5 +1,5 @@
 //
-//  TodoRequest.swift
+//  PlaceholderRequest.swift
 //  MokayExample
 //
 //  Created by Andrei Kozlov on 5/12/24.
@@ -8,18 +8,24 @@
 import Foundation
 import MokayNW
 
-enum TodoRequest {
+enum PlaceholderRequest {
 	case todo
+	case posts
 }
 
-extension TodoRequest: HTTPClient.Request {
+extension PlaceholderRequest: HTTPClient.Request {
 	
 	var baseUrl: URL {
 		URL(string: "https://jsonplaceholder.typicode.com/")!
 	}
 	
 	var endpoint: String {
-		return "todos"
+		switch self {
+		case .todo:
+			"todos"
+		case .posts:
+			"posts"
+		}
 	}
 	
 	var method: MokayNW.HTTPClient.Method {

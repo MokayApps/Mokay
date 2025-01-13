@@ -13,7 +13,7 @@ struct TodoListAssembly {
 		container.register(TodoListView.self) { resolver in
 			TodoListView(
 				viewModel: TodoListViewModel(
-					todoService: resolver.resolve(TodoServiceProtocol.self)!,
+					placeholderService: resolver.resolve(PlaceholderServiceProtocol.self)!,
 					viewModelFactory: TodoItemViewModelFactory()
 				)
 			)

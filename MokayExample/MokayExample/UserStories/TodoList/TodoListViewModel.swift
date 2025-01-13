@@ -12,14 +12,14 @@ import MokayDI
 	
 	private(set) var viewState: TodoListViewState = .idle
 	
-	private let todoService: TodoServiceProtocol
+	private let placeholderService: PlaceholderServiceProtocol
 	private let viewModelFactory: TodoItemViewModelFactoryProtocol
 	
 	init(
-		todoService: TodoServiceProtocol,
+		placeholderService: PlaceholderServiceProtocol,
 		viewModelFactory: TodoItemViewModelFactoryProtocol
 	) {
-		self.todoService = todoService
+		self.placeholderService = placeholderService
 		self.viewModelFactory = viewModelFactory
 	}
 	
@@ -36,7 +36,7 @@ import MokayDI
 		viewState = .loading
 		Task {
 			do {
-				let todoItems = try await todoService.fetchTodos(request: .todo)
+				let todoItems = try await placeholderService.fetchTodos(request: .todo)
 				let todoItemViewModels = todoItems.map(viewModelFactory.makeItemViewModel)
 				viewState = .loaded(todoItemViewModels)
 			} catch {

@@ -36,7 +36,7 @@ struct MainView: View {
 
 			Tab("Posts", systemImage: "newspaper", value: .posts) {
 				NavigationStack(path: $todoListRouter.path) {
-					todoListRouter.view(for: .todoList)
+					todoListRouter.view(for: .posts)
 						.navigationDestination(for: Route.self) { route in
 							todoListRouter.view(for: route)
 						}
