@@ -50,31 +50,33 @@ public final class StoreKitService: @unchecked Sendable {
     
     /// Обрабатывает покупку конкретного продукта.
     public func purhcase(_ product: Product) async throws {
+        let result: Product.PurchaseResult
+        
         do {
-            let result = try await product.purchase()
-            
-            switch result {
-            case let .success(verificationStatus):
-                switch verificationStatus {
-                case let .verified(transaction):
-                    await transaction.finish()
-                    await updatePurchasedProducts()
-                    
-                case let .unverified(_, error):
-                    throw StoreKitServiceError.verificationFailed(error)
-                }
-                
-            case .pending:
-                throw StoreKitServiceError.pending
-                
-            case .userCancelled:
-                throw StoreKitServiceError.userCancelled
-                
-            @unknown default:
-                throw StoreKitServiceError.unknown
-            }
+            result = try await product.purchase()
         } catch {
             throw StoreKitServiceError.transactionFailed(error)
+        }
+        
+        switch result {
+        case let .success(verificationStatus):
+            switch verificationStatus {
+            case let .verified(transaction):
+                await transaction.finish()
+                await updatePurchasedProducts()
+                
+            case let .unverified(_, error):
+                throw StoreKitServiceError.verificationFailed(error)
+            }
+            
+        case .pending:
+            throw StoreKitServiceError.pending
+            
+        case .userCancelled:
+            throw StoreKitServiceError.userCancelled
+            
+        @unknown default:
+            throw StoreKitServiceError.unknown
         }
     }
     
