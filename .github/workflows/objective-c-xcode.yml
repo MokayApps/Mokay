@@ -34,24 +34,7 @@ jobs:
         env:
           scheme: ${{ 'default' }}
         run: |
-          scheme=$(cat default)
-          if [ -d "Mokay" ]; then
-            cd Mokay
-          else
-            echo "Error: Mokay directory not found."
-            exit 1
-          fi
-          if [ -f *.xcworkspace ]; then
-            filetype_parameter="workspace"
-            file_to_build=$(ls *.xcworkspace | head -n 1)
-          else
-            filetype_parameter="project"
-            file_to_build=$(ls *.xcodeproj | head -n 1)
-          fi
-          
-          file_to_build=$(echo $file_to_build | awk '{$1=$1;print}')
-          
-          echo "Building $file_to_build using scheme $scheme"
-
-          xcodebuild clean build analyze -scheme "$scheme" -"$filetype_parameter" "$file_to_build" | xcpretty
-          exit ${PIPESTATUS[0]}
+          if [ $scheme = default ]; then scheme=$(cat default); fi
+          if [ "`ls -A | grep -i \\.xcworkspace\$`" ]; then filetype_parameter="workspace" && file_to_build="`ls -A | grep -i \\.xcworkspace\$`"; else filetype_parameter="project" && file_to_build="`ls -A | grep -i \\.xcodeproj\$`"; fi
+          file_to_build=`echo $file_to_build | awk '{$1=$1;print}'`
+          xcodebuild clean build analyze -scheme "$scheme" -"$filetype_parameter" "$file_to_build" | xcpretty && exit ${PIPESTATUS[0]}
