@@ -11,12 +11,14 @@ struct TodoListAssembly {
 	
 	func assemble(container: Container) {
 		container.register(TodoListView.self) { resolver in
-			TodoListView(
-				viewModel: TodoListViewModel(
-					placeholderService: resolver.resolve(PlaceholderServiceProtocol.self)!,
-					viewModelFactory: TodoItemViewModelFactory()
+			MainActor.assumeIsolated {
+				TodoListView(
+					viewModel: TodoListViewModel(
+						placeholderService: resolver.resolve(PlaceholderServiceProtocol.self)!,
+						viewModelFactory: TodoItemViewModelFactory()
+					)
 				)
-			)
+			}
 		}
 	}
 }

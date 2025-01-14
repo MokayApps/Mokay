@@ -8,7 +8,9 @@
 import SwiftData
 
 enum DatabaseSchemaV1_0_0: VersionedSchema {
-	static var versionIdentifier = Schema.Version(1, 0, 0)
+	static var versionIdentifier: Schema.Version {
+		Schema.Version(1, 0, 0)
+	}
 	
 	static var models: [any PersistentModel.Type] {
 		[Item.self]

@@ -8,7 +8,9 @@
 import SwiftUI
 import MokayDI
 
-@Observable final class Router: Sendable {
+@MainActor
+@Observable
+final class Router: Sendable {
 
 	let container: Container
 	var path: NavigationPath = NavigationPath()
