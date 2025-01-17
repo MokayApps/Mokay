@@ -5,32 +5,33 @@ import PackageDescription
 import CompilerPluginSupport
 
 let package = Package(
-    name: "Mokay",
+	name: "Mokay",
 	platforms: [
 		.iOS(.v17),
 		.macOS(.v14)
 	],
-    products: [
-        .library(
-            name: "Mokay",
-            targets: [
+	products: [
+		.library(
+			name: "Mokay",
+			targets: [
 				"MokayDB",
 				"MokayDI",
 				"MokayNW",
-                "MokaySK"
+				"MokayUI",
+				"MokaySK"
 			]
 		),
-    ],
+	],
 	dependencies: [],
-    targets: [
-        .target(
-            name: "MokayDB",
+	targets: [
+		.target(
+			name: "MokayDB",
 			dependencies: [],
 			path: "Mokay/Mokay/Database",
 			publicHeadersPath: "Mokay/Mokay"
 		),
 		.target(
-            name: "MokayDI",
+			name: "MokayDI",
 			dependencies: [],
 			path: "Mokay/Mokay/DI",
 			publicHeadersPath: "Mokay/Mokay"
@@ -41,21 +42,29 @@ let package = Package(
 			path: "Mokay/Mokay/HTTPClient",
 			publicHeadersPath: "Mokay/Mokay"
 		),
-        .target(
-            name: "MokaySK",
-            dependencies: [],
-            path: "Mokay/Mokay/StoreKit",
-            publicHeadersPath: "Mokay/Mokay"
-        ),
-        .testTarget(
-            name: "MokayTests",
-            dependencies: [
+		.target(
+			name: "MokayUI",
+			dependencies: [],
+			path: "Mokay/Mokay/DesignKit",
+			publicHeadersPath: "Mokay/Mokay"
+		),
+		.target(
+			name: "MokaySK",
+			dependencies: [],
+			path: "Mokay/Mokay/StoreKit",
+			publicHeadersPath: "Mokay/Mokay"
+		),
+		.testTarget(
+			name: "MokayTests",
+			dependencies: [
 				"MokayDB",
 				"MokayDI",
 				"MokayNW",
-                "MokaySK"
+				"MokayUI",
+				"MokaySK"
 			],
 			path: "Mokay/MokayTests"
-        ),
-    ]
+		),
+	]
 )
+
