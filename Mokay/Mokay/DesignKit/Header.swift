@@ -7,13 +7,23 @@
 
 import SwiftUI
 
-struct HeaderView: View {
+public struct HeaderView: View {
 	
 	let text: String
 	let color: Color
 	let style: TypographyStyle
+    
+    public init(
+        text: String,
+        color: Color,
+        style: TypographyStyle
+    ) {
+        self.text = text
+        self.color = color
+        self.style = style
+    }
 	
-	var body: some View {
+    public var body: some View {
 		Text(text)
 			.typography(type: style)
 			.foregroundStyle(color)

@@ -100,8 +100,8 @@ struct BaseTypography: ViewModifier {
 	}
 }
 
-public extension View {
-	func typography(type: TypographyStyle) -> some View {
+extension View {
+    public func typography(type: TypographyStyle) -> some View {
 		return self.modifier(BaseTypography(type: type))
 	}
 }

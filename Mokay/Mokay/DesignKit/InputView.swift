@@ -12,7 +12,19 @@ public struct InputView: View {
 	@Binding var text: String
 	let placeholder: String
 	let shouldChange: @MainActor (String) -> Bool
-	@State private var isSecure: Bool = false
+	@State private var isSecure: Bool
+    
+    public init(
+        text: Binding<String>,
+        placeholder: String,
+        shouldChange: @Sendable @MainActor @escaping (String) -> Bool,
+        isSecure: Bool = false
+    ) {
+        self._text = text
+        self.placeholder = placeholder
+        self.shouldChange = shouldChange
+        self.isSecure = isSecure
+    }
 	
 	public var body: some View {
 		HStack(alignment: .center, spacing: 8) {
@@ -51,7 +63,7 @@ public struct InputView: View {
 	}
 }
 
-@MainActor public struct TextFieldRepresentable: UIViewRepresentable {
+@MainActor struct TextFieldRepresentable: UIViewRepresentable {
 	
 	@Binding var text: String
 	@Binding var isSecure: Bool
@@ -126,7 +138,7 @@ public struct InputView: View {
 
 extension TextFieldRepresentable.Coordinator: UITextFieldDelegate {
 	
-	public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+	func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
 		guard let text = textField.text,
 			  let replacedRange = Range(range, in: text) else {
 			return false

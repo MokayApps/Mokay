@@ -8,8 +8,8 @@
 import Foundation
 import SwiftUI
 
-struct PrimaryMediumButtonStyle: ButtonStyle {
-	func makeBody(configuration: Configuration) -> some View {
+public struct PrimaryMediumButtonStyle: ButtonStyle {
+    public func makeBody(configuration: Configuration) -> some View {
 		configuration.label
 			.typography(type: .mediumLabel)
 			.padding(.horizontal, .x3)
@@ -25,13 +25,13 @@ struct PrimaryMediumButtonStyle: ButtonStyle {
 }
 
 extension ButtonStyle where Self == PrimaryMediumButtonStyle {
-	static var primary: PrimaryMediumButtonStyle {
+    public static var primary: PrimaryMediumButtonStyle {
 		PrimaryMediumButtonStyle()
 	}
 }
 
-struct SecondaryMediumButtonStyle: ButtonStyle {
-	func makeBody(configuration: Configuration) -> some View {
+public struct SecondaryMediumButtonStyle: ButtonStyle {
+    public func makeBody(configuration: Configuration) -> some View {
 		configuration.label
 			.typography(type: .mediumLabel)
 			.padding(.horizontal, .x3)
@@ -47,13 +47,13 @@ struct SecondaryMediumButtonStyle: ButtonStyle {
 }
 
 extension ButtonStyle where Self == SecondaryMediumButtonStyle {
-	static var secondary: SecondaryMediumButtonStyle {
+    public static var secondary: SecondaryMediumButtonStyle {
 		SecondaryMediumButtonStyle()
 	}
 }
 
-struct GhostMediumButtonStyle: ButtonStyle {
-	func makeBody(configuration: Configuration) -> some View {
+public struct GhostMediumButtonStyle: ButtonStyle {
+    public func makeBody(configuration: Configuration) -> some View {
 		configuration.label
 			.typography(type: .mediumLabel)
 			.padding(.horizontal, .x3)
@@ -65,7 +65,7 @@ struct GhostMediumButtonStyle: ButtonStyle {
 }
 
 extension ButtonStyle where Self == GhostMediumButtonStyle {
-	static var ghost: GhostMediumButtonStyle {
+    public static var ghost: GhostMediumButtonStyle {
 		GhostMediumButtonStyle()
 	}
 }

@@ -8,8 +8,8 @@
 import Foundation
 import SwiftUI
 
-struct PrimarySmallButtonStyle: ButtonStyle {
-	func makeBody(configuration: Configuration) -> some View {
+public struct PrimarySmallButtonStyle: ButtonStyle {
+    public func makeBody(configuration: Configuration) -> some View {
 		configuration.label
 			.typography(type: .smallLabel)
 			.padding(.x1)
@@ -24,13 +24,13 @@ struct PrimarySmallButtonStyle: ButtonStyle {
 }
 
 extension ButtonStyle where Self == PrimarySmallButtonStyle {
-	static var primary: PrimarySmallButtonStyle {
+    public static var primary: PrimarySmallButtonStyle {
 		PrimarySmallButtonStyle()
 	}
 }
 
-struct SecondarySmallButtonStyle: ButtonStyle {
-	func makeBody(configuration: Configuration) -> some View {
+public struct SecondarySmallButtonStyle: ButtonStyle {
+    public func makeBody(configuration: Configuration) -> some View {
 		configuration.label
 			.typography(type: .smallLabel)
 			.padding(.x1)
@@ -45,13 +45,13 @@ struct SecondarySmallButtonStyle: ButtonStyle {
 }
 
 extension ButtonStyle where Self == SecondarySmallButtonStyle {
-	static var secondary: SecondarySmallButtonStyle {
+    public static var secondary: SecondarySmallButtonStyle {
 		SecondarySmallButtonStyle()
 	}
 }
 
-struct GhostSmallButtonStyle: ButtonStyle {
-	func makeBody(configuration: Configuration) -> some View {
+public struct GhostSmallButtonStyle: ButtonStyle {
+    public func makeBody(configuration: Configuration) -> some View {
 		configuration.label
 			.typography(type: .smallLabel)
 			.padding(.x1)
@@ -62,7 +62,7 @@ struct GhostSmallButtonStyle: ButtonStyle {
 }
 
 extension ButtonStyle where Self == GhostSmallButtonStyle {
-	static var ghost: GhostSmallButtonStyle {
+    public static var ghost: GhostSmallButtonStyle {
 		GhostSmallButtonStyle()
 	}
 }

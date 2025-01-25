@@ -16,7 +16,7 @@ public struct CellView<LeadingContent: View, TrailingContent: View>: View {
 	let description: String?
 	let showRedDot: Bool
 	
-	init(
+    public init(
 		@ViewBuilder leadingItem: @escaping () -> LeadingContent,
 		@ViewBuilder trailingItem: @escaping () -> TrailingContent,
 		text: String,
@@ -63,7 +63,7 @@ public struct CellView<LeadingContent: View, TrailingContent: View>: View {
 
 extension CellView where LeadingContent == EmptyView, TrailingContent == EmptyView {
 	
-	init(text: String, description: String? = nil, showRedDot: Bool = false) {
+    public init(text: String, description: String? = nil, showRedDot: Bool = false) {
 		self.leadingItem = nil
 		self.trailingItem = nil
 		self.text = text
@@ -74,7 +74,7 @@ extension CellView where LeadingContent == EmptyView, TrailingContent == EmptyVi
 
 extension CellView where TrailingContent == EmptyView {
 	
-	init(@ViewBuilder leadingItem: @escaping () -> LeadingContent, text: String, description: String? = nil, showRedDot: Bool = false) {
+    public init(@ViewBuilder leadingItem: @escaping () -> LeadingContent, text: String, description: String? = nil, showRedDot: Bool = false) {
 		self.leadingItem = leadingItem
 		self.trailingItem = nil
 		self.text = text
@@ -85,7 +85,7 @@ extension CellView where TrailingContent == EmptyView {
 
 extension CellView where LeadingContent == EmptyView {
 	
-	init(@ViewBuilder trailingItem: @escaping () -> TrailingContent, text: String, description: String? = nil, showRedDot: Bool = false) {
+    public init(@ViewBuilder trailingItem: @escaping () -> TrailingContent, text: String, description: String? = nil, showRedDot: Bool = false) {
 		self.trailingItem = trailingItem
 		self.leadingItem = nil
 		self.text = text
