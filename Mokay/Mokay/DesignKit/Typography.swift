@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import Foundation
+import UIKit
 
 public enum TypographyStyle {
 	case h1
@@ -49,6 +49,22 @@ public enum TypographyStyle {
 		case .description: .semibold
 		}
 	}
+    
+    
+    public var uiWeight: UIFont.Weight {
+        switch self {
+        case .h1: .heavy
+        case .h2: .heavy
+        case .h3: .bold
+        case .h4: .heavy
+        case .smallLabel: .bold
+        case .mediumLabel: .bold
+        case .caption: .bold
+        case .subhead:.semibold
+        case .body: .semibold
+        case .description: .semibold
+        }
+    }
 	
 	public var tracking: CGFloat {
 		switch self {
@@ -65,30 +81,9 @@ public enum TypographyStyle {
 		}
 	}
 	
-	public var font: Font {
-		switch self {
-		case .h1:
-			Font.system(size: 48, weight: .heavy)
-		case .h2:
-			Font.system(size: 32, weight: .heavy)
-		case .h3:
-			Font.system(size: 26, weight: .bold)
-		case .h4:
-			Font.system(size: 20, weight: .heavy)
-		case .smallLabel:
-			Font.caption2.weight(.bold).smallCaps()
-		case .mediumLabel:
-			Font.body.weight(.bold)
-		case .caption:
-			Font.caption2.weight(.bold)
-		case .subhead:
-			Font.subheadline.weight(.semibold)
-		case .body:
-			Font.body.weight(.semibold)
-		case .description:
-			Font.footnote.weight(.semibold)
-		}
-	}
+	public var font: Font { Font.system(size: size, weight: weight) }
+    
+    public var uiFont: UIFont { UIFont.systemFont(ofSize: size, weight: uiWeight) }
 }
 
 struct BaseTypography: ViewModifier {
@@ -101,7 +96,13 @@ struct BaseTypography: ViewModifier {
 }
 
 extension View {
+    
     public func typography(type: TypographyStyle) -> some View {
 		return self.modifier(BaseTypography(type: type))
 	}
+}
+
+extension UIFont {
+    
+    public func typography(type: TypographyStyle) -> UIFont { return type.uiFont }
 }
