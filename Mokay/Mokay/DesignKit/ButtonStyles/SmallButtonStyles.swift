@@ -24,7 +24,7 @@ public struct PrimarySmallButtonStyle: ButtonStyle {
 }
 
 extension ButtonStyle where Self == PrimarySmallButtonStyle {
-    public static var primary: PrimarySmallButtonStyle {
+    @MainActor public static var primary: PrimarySmallButtonStyle {
 		PrimarySmallButtonStyle()
 	}
 }
@@ -45,7 +45,7 @@ public struct SecondarySmallButtonStyle: ButtonStyle {
 }
 
 extension ButtonStyle where Self == SecondarySmallButtonStyle {
-    public static var secondary: SecondarySmallButtonStyle {
+    @MainActor public static var secondary: SecondarySmallButtonStyle {
 		SecondarySmallButtonStyle()
 	}
 }
@@ -62,7 +62,7 @@ public struct GhostSmallButtonStyle: ButtonStyle {
 }
 
 extension ButtonStyle where Self == GhostSmallButtonStyle {
-    public static var ghost: GhostSmallButtonStyle {
+    @MainActor public static var ghost: GhostSmallButtonStyle {
 		GhostSmallButtonStyle()
 	}
 }
