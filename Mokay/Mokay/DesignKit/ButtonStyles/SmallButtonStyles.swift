@@ -14,7 +14,7 @@ public struct PrimarySmallButtonStyle: ButtonStyle {
     
     public func makeBody(configuration: Configuration) -> some View {
 		configuration.label
-			.typography(type: .smallLabel)
+			.typography(.smallLabel)
 			.padding(.x1)
 			.frame(height: 40)
 			.background {
@@ -36,7 +36,7 @@ public struct SecondarySmallButtonStyle: ButtonStyle {
     
     public func makeBody(configuration: Configuration) -> some View {
 		configuration.label
-			.typography(type: .smallLabel)
+			.typography(.smallLabel)
 			.padding(.x1)
 			.frame(height: 40)
 			.background {
@@ -58,7 +58,7 @@ public struct GhostSmallButtonStyle: ButtonStyle {
     
     public func makeBody(configuration: Configuration) -> some View {
 		configuration.label
-			.typography(type: .smallLabel)
+			.typography(.smallLabel)
 			.padding(.x1)
 			.frame(height: 40)
 			.opacity(configuration.isPressed ? 0.5 : 1.0)

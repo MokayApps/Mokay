@@ -14,7 +14,7 @@ public struct PrimaryMediumButtonStyle: ButtonStyle {
     
     public func makeBody(configuration: Configuration) -> some View {
 		configuration.label
-			.typography(type: .mediumLabel)
+			.typography(.mediumLabel)
 			.padding(.horizontal, .x3)
 			.padding(.vertical, .x2)
 			.frame(height: 56)
@@ -37,7 +37,7 @@ public struct SecondaryMediumButtonStyle: ButtonStyle {
     
     public func makeBody(configuration: Configuration) -> some View {
 		configuration.label
-			.typography(type: .mediumLabel)
+			.typography(.mediumLabel)
 			.padding(.horizontal, .x3)
 			.padding(.vertical, .x2)
 			.frame(height: 56)
@@ -60,7 +60,7 @@ public struct GhostMediumButtonStyle: ButtonStyle {
     
     public func makeBody(configuration: Configuration) -> some View {
 		configuration.label
-			.typography(type: .mediumLabel)
+			.typography(.mediumLabel)
 			.padding(.horizontal, .x3)
 			.padding(.vertical, .x2)
 			.frame(height: 56)

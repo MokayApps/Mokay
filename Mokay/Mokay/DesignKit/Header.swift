@@ -25,7 +25,7 @@ public struct HeaderView: View {
 	
     public var body: some View {
 		Text(text)
-			.typography(type: style)
+			.typography(style)
 			.foregroundStyle(color)
 			.padding([.leading, .bottom], .x1)
 	}

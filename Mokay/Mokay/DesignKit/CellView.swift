@@ -37,7 +37,7 @@ public struct CellView<LeadingContent: View, TrailingContent: View>: View {
 			VStack(alignment: .leading, spacing: .zero) {
 				HStack(spacing: .x2) {
 					Text(text)
-						.typography(type: .mediumLabel)
+						.typography(.mediumLabel)
 					if showRedDot {
 						Circle()
 							.frame(width: 8, height: 8)
@@ -46,7 +46,7 @@ public struct CellView<LeadingContent: View, TrailingContent: View>: View {
 				}
 				if let description {
 					Text(description)
-						.typography(type: .description)
+						.typography(.description)
 						.foregroundStyle(.secondary)
 				}
 			}

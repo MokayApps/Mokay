@@ -97,12 +97,12 @@ struct BaseTypography: ViewModifier {
 
 extension View {
     
-    public func typography(type: TypographyStyle) -> some View {
+    public func typography(_ type: TypographyStyle) -> some View {
 		return self.modifier(BaseTypography(type: type))
 	}
 }
 
 extension UIFont {
     
-    public func typography(type: TypographyStyle) -> UIFont { return type.uiFont }
+    public static func typography(_ type: TypographyStyle) -> UIFont { return type.uiFont }
 }
