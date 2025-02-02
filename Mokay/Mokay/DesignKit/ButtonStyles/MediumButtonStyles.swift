@@ -18,10 +18,7 @@ public struct PrimaryMediumButtonStyle: ButtonStyle {
 			.padding(.horizontal, .x3)
 			.padding(.vertical, .x2)
 			.frame(height: 56)
-			.background {
-				RoundedRectangle(cornerRadius: 24)
-					.foregroundStyle(.primary)
-			}
+            .background(.background, in: RoundedRectangle(cornerRadius: 24))
 			.opacity(configuration.isPressed ? 0.5 : 1.0)
 			.animation(.easeInOut, value: configuration.isPressed)
 	}
@@ -41,10 +38,7 @@ public struct SecondaryMediumButtonStyle: ButtonStyle {
 			.padding(.horizontal, .x3)
 			.padding(.vertical, .x2)
 			.frame(height: 56)
-			.background {
-				RoundedRectangle(cornerRadius: 24)
-					.foregroundStyle(.secondary)
-			}
+            .background(.background.secondary, in: RoundedRectangle(cornerRadius: 24))
 			.opacity(configuration.isPressed ? 0.5 : 1.0)
 			.animation(.easeInOut, value: configuration.isPressed)
 	}
