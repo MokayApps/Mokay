@@ -9,6 +9,9 @@ import Foundation
 import SwiftUI
 
 public struct PrimaryMediumButtonStyle: ButtonStyle {
+    
+    public init() {}
+    
     public func makeBody(configuration: Configuration) -> some View {
 		configuration.label
 			.typography(type: .mediumLabel)
@@ -25,12 +28,13 @@ public struct PrimaryMediumButtonStyle: ButtonStyle {
 }
 
 extension ButtonStyle where Self == PrimaryMediumButtonStyle {
-
-    public static var primary: Self { Self() }
-
+    public static var primaryMedium: Self { Self() }
 }
 
 public struct SecondaryMediumButtonStyle: ButtonStyle {
+    
+    public init() {}
+    
     public func makeBody(configuration: Configuration) -> some View {
 		configuration.label
 			.typography(type: .mediumLabel)
@@ -47,10 +51,13 @@ public struct SecondaryMediumButtonStyle: ButtonStyle {
 }
 
 extension ButtonStyle where Self == SecondaryMediumButtonStyle {
-    public static var secondary: Self { Self() }
+    public static var secondaryMedium: Self { Self() }
 }
 
 public struct GhostMediumButtonStyle: ButtonStyle {
+    
+    public init() {}
+    
     public func makeBody(configuration: Configuration) -> some View {
 		configuration.label
 			.typography(type: .mediumLabel)
@@ -63,5 +70,5 @@ public struct GhostMediumButtonStyle: ButtonStyle {
 }
 
 extension ButtonStyle where Self == GhostMediumButtonStyle {
-    public static var ghost: Self { Self() }
+    public static var ghostMedium: Self { Self() }
 }

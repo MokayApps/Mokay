@@ -9,6 +9,9 @@ import Foundation
 import SwiftUI
 
 public struct PrimarySmallButtonStyle: ButtonStyle {
+    
+    public init() {}
+    
     public func makeBody(configuration: Configuration) -> some View {
 		configuration.label
 			.typography(type: .smallLabel)
@@ -24,12 +27,13 @@ public struct PrimarySmallButtonStyle: ButtonStyle {
 }
 
 extension ButtonStyle where Self == PrimarySmallButtonStyle {
-    @MainActor public static var primary: PrimarySmallButtonStyle {
-		PrimarySmallButtonStyle()
-	}
+    public static var primarySmall: Self { Self() }
 }
 
 public struct SecondarySmallButtonStyle: ButtonStyle {
+    
+    public init() {}
+    
     public func makeBody(configuration: Configuration) -> some View {
 		configuration.label
 			.typography(type: .smallLabel)
@@ -45,12 +49,13 @@ public struct SecondarySmallButtonStyle: ButtonStyle {
 }
 
 extension ButtonStyle where Self == SecondarySmallButtonStyle {
-    @MainActor public static var secondary: SecondarySmallButtonStyle {
-		SecondarySmallButtonStyle()
-	}
+    public static var secondarySmall: Self { Self() }
 }
 
 public struct GhostSmallButtonStyle: ButtonStyle {
+    
+    public init() {}
+    
     public func makeBody(configuration: Configuration) -> some View {
 		configuration.label
 			.typography(type: .smallLabel)
@@ -62,7 +67,5 @@ public struct GhostSmallButtonStyle: ButtonStyle {
 }
 
 extension ButtonStyle where Self == GhostSmallButtonStyle {
-    @MainActor public static var ghost: GhostSmallButtonStyle {
-		GhostSmallButtonStyle()
-	}
+    public static var ghostSmall: Self { Self() }
 }
