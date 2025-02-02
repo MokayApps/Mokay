@@ -25,9 +25,9 @@ public struct PrimaryMediumButtonStyle: ButtonStyle {
 }
 
 extension ButtonStyle where Self == PrimaryMediumButtonStyle {
-    @MainActor public static var primary: PrimaryMediumButtonStyle {
-		PrimaryMediumButtonStyle()
-	}
+
+    public static var primary: Self { Self() }
+
 }
 
 public struct SecondaryMediumButtonStyle: ButtonStyle {
@@ -47,9 +47,7 @@ public struct SecondaryMediumButtonStyle: ButtonStyle {
 }
 
 extension ButtonStyle where Self == SecondaryMediumButtonStyle {
-    @MainActor public static var secondary: SecondaryMediumButtonStyle {
-		SecondaryMediumButtonStyle()
-	}
+    public static var secondary: Self { Self() }
 }
 
 public struct GhostMediumButtonStyle: ButtonStyle {
@@ -65,7 +63,5 @@ public struct GhostMediumButtonStyle: ButtonStyle {
 }
 
 extension ButtonStyle where Self == GhostMediumButtonStyle {
-    @MainActor public static var ghost: GhostMediumButtonStyle {
-		GhostMediumButtonStyle()
-	}
+    public static var ghost: Self { Self() }
 }
