@@ -20,6 +20,11 @@ public enum TypographyStyle {
 	case body
 	case description
 	
+	case sfSymbolXL
+	case sfSymbolL
+	case sfSymbolM
+	case sfSymbolS
+	
 	public var size: CGFloat {
 		switch self {
 		case .h1: 48
@@ -32,6 +37,10 @@ public enum TypographyStyle {
 		case .subhead: 15
 		case .body: 17
 		case .description: 13
+		case .sfSymbolXL: 37
+		case .sfSymbolL: 20
+		case .sfSymbolM: 17
+		case .sfSymbolS: 11
 		}
 	}
 	
@@ -47,6 +56,10 @@ public enum TypographyStyle {
 		case .subhead:.semibold
 		case .body: .semibold
 		case .description: .semibold
+		case .sfSymbolXL: .semibold
+		case .sfSymbolL: .semibold
+		case .sfSymbolM: .semibold
+		case .sfSymbolS: .bold
 		}
 	}
     
@@ -63,6 +76,10 @@ public enum TypographyStyle {
         case .subhead:.semibold
         case .body: .semibold
         case .description: .semibold
+				case .sfSymbolXL: .semibold
+				case .sfSymbolL: .semibold
+				case .sfSymbolM: .semibold
+				case .sfSymbolS: .bold
         }
     }
 	
@@ -78,6 +95,10 @@ public enum TypographyStyle {
 		case .subhead: 0
 		case .body: 0
 		case .description: 0
+		case .sfSymbolXL: 0
+		case .sfSymbolL: 0
+		case .sfSymbolM: 0
+		case .sfSymbolS: 0
 		}
 	}
 	

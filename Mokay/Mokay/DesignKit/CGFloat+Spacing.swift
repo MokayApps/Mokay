@@ -8,6 +8,7 @@
 import Foundation
 
 extension CGFloat {
+	public static let x05: CGFloat = 4
 	public static let x1: CGFloat = 8
 	public static let x2: CGFloat = 16
 	public static let x3: CGFloat = 24
