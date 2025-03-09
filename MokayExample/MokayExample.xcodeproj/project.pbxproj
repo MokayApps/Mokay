@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1CF9C4F92D01C288006C55E7 /* Mokay in Frameworks */ = {isa = PBXBuildFile; productRef = 1CF9C4F82D01C288006C55E7 /* Mokay */; };
+		1CA892822D7DB53300021512 /* Mokay in Frameworks */ = {isa = PBXBuildFile; productRef = 1CA892812D7DB53300021512 /* Mokay */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,7 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1CF9C4F92D01C288006C55E7 /* Mokay in Frameworks */,
+				1CA892822D7DB53300021512 /* Mokay in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,7 +125,7 @@
 			);
 			name = MokayExample;
 			packageProductDependencies = (
-				1CF9C4F82D01C288006C55E7 /* Mokay */,
+				1CA892812D7DB53300021512 /* Mokay */,
 			);
 			productName = MokayExample;
 			productReference = 1C3921D92D00573100848672 /* MokayExample.app */;
@@ -210,7 +210,7 @@
 			mainGroup = 1C3921D02D00573100848672;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				1C101BD52D00E514002204E0 /* XCRemoteSwiftPackageReference "Mokay" */,
+				1CA892802D7DB53300021512 /* XCLocalSwiftPackageReference "../../Mokay" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 1C3921DA2D00573100848672 /* Products */;
@@ -415,7 +415,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MokayExample/Preview Content\"";
-				DEVELOPMENT_TEAM = 4GG5Y2R22P;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -444,7 +444,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MokayExample/Preview Content\"";
-				DEVELOPMENT_TEAM = 4GG5Y2R22P;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -578,21 +578,16 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		1C101BD52D00E514002204E0 /* XCRemoteSwiftPackageReference "Mokay" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/k0zl0v/Mokay.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.2.0;
-			};
+/* Begin XCLocalSwiftPackageReference section */
+		1CA892802D7DB53300021512 /* XCLocalSwiftPackageReference "../../Mokay" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../../Mokay;
 		};
-/* End XCRemoteSwiftPackageReference section */
+/* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		1CF9C4F82D01C288006C55E7 /* Mokay */ = {
+		1CA892812D7DB53300021512 /* Mokay */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 1C101BD52D00E514002204E0 /* XCRemoteSwiftPackageReference "Mokay" */;
 			productName = Mokay;
 		};
 /* End XCSwiftPackageProductDependency section */
