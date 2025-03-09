@@ -102,7 +102,7 @@ public struct InputView<LeadingContent: View, TrailingContent: View>: View {
 		}
         .padding(.horizontal, .x2)
 		.background(in: RoundedRectangle(cornerRadius: 24))
-        .backgroundStyle(.background.secondary)
+		.backgroundStyle(.black.opacity(0.04))
         .foregroundStyle(.primary)
 	}
 }
