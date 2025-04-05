@@ -20,8 +20,11 @@ public actor Database {
 		self.modelContainer = modelContainer
 	}
 
-	public func fetch<Model: PersistentModel>(predicate: Predicate<Model>) throws -> [Model] {
-		let fetchDescriptor = FetchDescriptor<Model>(predicate: predicate)
+	public func fetch<Model: PersistentModel>(
+		predicate: Predicate<Model>? = nil,
+		sortBy descriptors: [SortDescriptor<Model>] = []
+	) throws -> [Model] {
+		let fetchDescriptor = FetchDescriptor<Model>(predicate: predicate, sortBy: descriptors)
 		return try modelContext.fetch(fetchDescriptor)
 	}
 
@@ -45,6 +48,7 @@ public actor Database {
 	}
 
 	public func save() throws {
+		guard modelContext.hasChanges else { return }
 		try modelContext.save()
 	}
 
