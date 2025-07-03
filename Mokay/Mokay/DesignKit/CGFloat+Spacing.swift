@@ -12,4 +12,6 @@ extension CGFloat {
 	public static let x1: CGFloat = 8
 	public static let x2: CGFloat = 16
 	public static let x3: CGFloat = 24
+    public static let x4: CGFloat = 32
+    public static let x5: CGFloat = 40
 }
