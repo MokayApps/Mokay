@@ -10,7 +10,7 @@ import SwiftUI
 import UIKit
 
 public extension UIColor {
-	public convenience init(
+	convenience init(
 		light lightModeColor: @escaping @autoclosure () -> UIColor,
 		dark darkModeColor: @escaping @autoclosure () -> UIColor
 	) {
@@ -30,7 +30,7 @@ public extension UIColor {
 }
 
 public extension Color {
-	public init(
+	init(
 		light lightModeColor: @escaping @autoclosure () -> Color,
 		dark darkModeColor: @escaping @autoclosure () -> Color
 	) {
@@ -46,7 +46,7 @@ fileprivate extension UIColor {
 }
 
 public extension UIColor {
-	public convenience init(_ rgbValue: UInt,_ alpha: CGFloat = 1.0) {
+	convenience init(_ rgbValue: UInt,_ alpha: CGFloat = 1.0) {
 		self.init(
 			red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
 			green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
@@ -57,7 +57,7 @@ public extension UIColor {
 }
 
 public extension Color {
-	public init(_ hex: UInt, alpha: Double = 1) {
+	init(_ hex: UInt, alpha: Double = 1) {
 		self.init(
 			.sRGB,
 			red: Double((hex >> 16) & 0xff) / 255,
@@ -69,7 +69,7 @@ public extension Color {
 }
 
 public extension Color {
-	public init(hexString: String, alpha: Double = 1) {
+	init(hexString: String, alpha: Double = 1) {
 		if let number = UInt(hexString, radix: 16) {
 			self.init(number, alpha: alpha)
 		} else {
@@ -80,19 +80,19 @@ public extension Color {
 
 
 public extension UInt {
-	public var toColor: Color {
+	var toColor: Color {
 		return Color(self)
 	}
 }
 
 public extension Color {
-	public var uiColor: UIColor {
+	var uiColor: UIColor {
 		return UIColor(self)
 	}
 }
 
 public extension Color {
-	public func toHex() -> String? {
+	func toHex() -> String? {
 		// Convert Color to UIColor
 		let uiColor = UIColor(self)
 		

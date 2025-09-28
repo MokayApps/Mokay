@@ -8,19 +8,19 @@ def load_json(file_path):
         return json.load(f)
 
 def resolve_reference(ref, palette):
+    """
+    Разрешает ссылки вида {colors.primary.500} через палитру
+    """
     match = re.match(r"\{colors\.([a-zA-Z0-9]+)\.([0-9]+)\}", ref)
     if match:
         color_family, shade = match.groups()
         return palette["colors"][color_family][shade]["value"]
     return ref
 
-def hex_to_uint(hex_str):
-    hex_str = hex_str.lstrip("#")
-    if len(hex_str) == 6 or len(hex_str) == 8:
-        return f"0x{hex_str[:6].upper()}"
-    return "0x000000"
-
 def flatten_tokens(tokens, prefix=""):
+    """
+    Плоская структура: {'primary_background': '#FFFFFF'}
+    """
     flat = {}
     for key, val in tokens.items():
         new_prefix = f"{prefix}_{key}" if prefix else key
@@ -29,6 +29,29 @@ def flatten_tokens(tokens, prefix=""):
         elif isinstance(val, dict):
             flat.update(flatten_tokens(val, new_prefix))
     return flat
+
+def hex_to_color_params(hex_str):
+    """
+    Преобразует #RRGGBB или #RRGGBBAA в (hex_uint, alpha_float)
+    """
+    hex_str = hex_str.lstrip("#")
+    if len(hex_str) == 6:  # только RGB
+        rgb = f"0x{hex_str.upper()}"
+        alpha = "1.0"
+    elif len(hex_str) == 8:  # RGBA
+        rgb = f"0x{hex_str[:6].upper()}"
+        alpha_hex = hex_str[6:8]
+        alpha = f"{int(alpha_hex, 16) / 255:.3f}"
+    else:
+        rgb = "0x000000"
+        alpha = "1.0"
+    return rgb, alpha
+
+def make_safe_name(token):
+    """
+    Преобразует имя токена в безопасное для Swift (только буквы, цифры, _)
+    """
+    return re.sub(r'[^0-9a-zA-Z_]', '_', token)
 
 def main():
     base_dir = Path.cwd()
@@ -58,20 +81,21 @@ def main():
         else:
             dark_hex = light_hex
 
-        light_uint = hex_to_uint(light_hex)
-        dark_uint = hex_to_uint(dark_hex)
+        light_uint, light_alpha = hex_to_color_params(light_hex)
+        dark_uint, dark_alpha = hex_to_color_params(dark_hex)
 
-        # имя для swift (убираем точки, дефисы и т.п.)
-        safe_name = re.sub(r'[^0-9a-zA-Z_]', '_', token)
+        safe_name = make_safe_name(token)
 
+        # SwiftUI Color
         lines.append(f"    static let {safe_name} = Color(\n")
-        lines.append(f"        light: Color({light_uint}),\n")
-        lines.append(f"        dark: Color({dark_uint})\n")
-        lines.append("    )\n")
+        lines.append(f"        light: Color({light_uint}, alpha: {light_alpha}),\n")
+        lines.append(f"        dark: Color({dark_uint}, alpha: {dark_alpha})\n")
+        lines.append("    )\n\n")
 
     lines.append("}\n")
 
     out_path = base_dir / "MokayColors.swift"
+    os.makedirs(base_dir, exist_ok=True)
     with open(out_path, "w", encoding="utf-8") as f:
         f.writelines(lines)
 
