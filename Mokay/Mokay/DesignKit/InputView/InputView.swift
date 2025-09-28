@@ -106,7 +106,7 @@ public struct InputView<LeadingContent: View, TrailingContent: View>: View {
 		}
 		.padding(.horizontal, .x2)
 		.background(in: RoundedRectangle(cornerRadius: 24))
-		.backgroundStyle(Color(.secondaryGray))
+		.backgroundStyle(Color.secondaryGray)
 	}
 	
 	public func caretColor(_ color: UIColor) -> InputView<LeadingContent, TrailingContent> {

@@ -30,13 +30,13 @@ import SwiftUI
 		let textField = UITextField()
 		textField.delegate = context.coordinator
 		textField.placeholder = placeholder
-		textField.textColor = .textPrimary
+		textField.textColor = Color.textPrimary.uiColor
 		textField.textAlignment = .left
 		textField.tintColor = tintColor ?? .black
 		textField.attributedPlaceholder = NSAttributedString(
 			string: placeholder,
 			attributes: [
-				.foregroundColor: UIColor.textSecondary
+				.foregroundColor: Color.textSecondary.uiColor
 			]
 		)
 		switch context.environment.inputViewStyle {
