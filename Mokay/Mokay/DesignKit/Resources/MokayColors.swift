@@ -74,10 +74,6 @@ public extension Color {
         light: Color(0xFFFFFF),
         dark: Color(0x000000)
     )
-    static let black = Color(
-        light: Color(0x000000),
-        dark: Color(0x000000)
-    )
     static let secondaryBlue = Color(
         light: Color(0xF2F7FF),
         dark: Color(0x0C1736)
@@ -169,9 +165,5 @@ public extension Color {
     static let warning = Color(
         light: Color(0xDC2828),
         dark: Color(0xFF6565)
-    )
-    static let white = Color(
-        light: Color(0xFFFFFF),
-        dark: Color(0xFFFFFF)
     )
 }
