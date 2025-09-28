@@ -36,7 +36,7 @@ import SwiftUI
 		textField.attributedPlaceholder = NSAttributedString(
 			string: placeholder,
 			attributes: [
-				.foregroundColor: UIColor(named: "textSecondary", in: .init(identifier: "Mokay"), compatibleWith: nil) ?? .black // UIColor.textSecondary
+				.foregroundColor: UIColor.textSecondary
 			]
 		)
 		switch context.environment.inputViewStyle {

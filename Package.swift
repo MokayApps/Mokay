@@ -46,7 +46,7 @@ let package = Package(
 			name: "MokayUI",
 			dependencies: [],
 			path: "Mokay/Mokay/DesignKit",
-			resources: [.process("Resources")],
+			resources: [.copy("Resources")],
 			publicHeadersPath: "Mokay/Mokay"
 		),
 		.target(
