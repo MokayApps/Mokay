@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+@available(iOS 26.0, *)
 public struct ContentMenuView<Label: View, Style: PrimitiveButtonStyle, Content: View>: View {
 	
 	@ViewBuilder private var label: Label
@@ -52,6 +53,7 @@ public struct ContentMenuView<Label: View, Style: PrimitiveButtonStyle, Content:
 	}
 }
 
+@available(iOS 26.0, *)
 private extension ContentMenuView {
 	enum AnimationID: String {
 		case content = "Content"
