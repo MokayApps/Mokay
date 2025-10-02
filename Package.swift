@@ -67,4 +67,3 @@ let package = Package(
 		),
 	]
 )
-
