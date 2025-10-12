@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 @available(iOS 26.0, *)
-public struct ContentMenuView<Label: View, Style: PrimitiveButtonStyle, Content: View>: View {
+public struct ContentMenuView<Label: View, Style: ButtonStyle, Content: View>: View {
 	
 	@ViewBuilder private var label: Label
 	@ViewBuilder private var content: Content
